@@ -418,6 +418,18 @@ section { position: relative; }
   opacity: 0.75;
 }
 .format-item.coming-soon .format-arrow { color: var(--ink-faded); }
+/* Stretched link covers the entire card so the whole tile is clickable */
+.format-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  text-decoration: none;
+  /* Visible focus ring for keyboard users */
+}
+.format-link:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 4px;
+}
 
 .isbn {
   margin-top: 2rem;
@@ -696,6 +708,163 @@ section { position: relative; }
 .author .blob-a1 { top:6%; right:-4%; width: clamp(160px, 22vw, 280px); opacity: 0.5; }
 
 /* =========================================================
+   CONTACT
+   Literary-style form with underline-only inputs
+   ========================================================= */
+.contact {
+  padding: 7rem var(--gutter);
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+}
+.contact-grid {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
+  align-items: start;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 820px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+.contact-intro h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+.contact-intro p {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+.contact-meta {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-faded);
+}
+.contact-meta a {
+  color: var(--navy);
+  text-decoration: none;
+  border-bottom: 1px solid var(--orange);
+  padding-bottom: 1px;
+  transition: color .25s var(--ease);
+}
+.contact-meta a:hover { color: var(--orange-deep); }
+
+/* Form */
+.contact-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.8rem 1.5rem;
+}
+@media (max-width: 600px) {
+  .contact-form { grid-template-columns: 1fr; }
+}
+.field { position: relative; }
+.field.full { grid-column: 1 / -1; }
+.field label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  margin-bottom: 0.5rem;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--rule);
+  padding: 0.6rem 0;
+  font-family: var(--f-body);
+  font-size: 1.05rem;
+  color: var(--ink);
+  transition: border-color .3s var(--ease);
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.field textarea {
+  min-height: 7rem;
+  resize: vertical;
+  line-height: 1.6;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--orange);
+}
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--ink-faded);
+  opacity: 0.6;
+  font-style: italic;
+  font-family: var(--f-italic);
+}
+
+.submit-row {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.btn-submit {
+  background: var(--navy-ink);
+  color: var(--bg);
+  border: none;
+  padding: 1.1rem 2.2rem;
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: background .3s var(--ease), transform .3s var(--ease);
+  position: relative;
+  overflow: hidden;
+}
+.btn-submit:hover {
+  background: var(--orange-deep);
+  transform: translateY(-2px);
+}
+.btn-submit .arrow {
+  display: inline-block;
+  transition: transform .3s var(--ease);
+}
+.btn-submit:hover .arrow { transform: translateX(5px); }
+.form-note {
+  font-size: 0.78rem;
+  color: var(--ink-faded);
+  font-style: italic;
+  font-family: var(--f-italic);
+}
+
+/* Confirmation message after "submit" */
+.form-success {
+  grid-column: 1 / -1;
+  display: none;
+  padding: 1.5rem 1.8rem;
+  background: rgba(58,138,144,0.10);
+  border-left: 3px solid var(--teal);
+  color: var(--navy-ink);
+  font-family: var(--f-italic);
+  font-style: italic;
+}
+.form-success.show { display: block; }
+
+/* Decorative blob */
+.contact .blob-c1 { bottom:-10%; right:-6%; width: clamp(180px, 24vw, 320px); opacity: 0.4; }
+
+/* =========================================================
    FOOTER
    ========================================================= */
 footer {
@@ -738,6 +907,27 @@ footer {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(236,233,226,0.45);
+}
+/* Designer credit — sits below the meta line, subtle but visible */
+.footer-credit {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(236,233,226,0.10);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(236,233,226,0.55);
+  font-family: var(--f-body);
+}
+.footer-credit strong {
+  color: var(--orange);
+  font-weight: 500;
+  font-family: var(--f-italic);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  margin-left: 0.4rem;
 }
 
 /* =========================================================
@@ -847,6 +1037,7 @@ footer {
     <a href="#reviews">Reviews</a>
     <a href="#author">Author</a>
     <a href="#purchase">Buy</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
@@ -892,14 +1083,22 @@ footer {
     </div>
     <div class="reveal delay-1">
       <ul class="format-list">
-        <li class="format-item available" tabindex="0">
+        <li class="format-item available">
+          <a class="format-link"
+             href="https://www.amazon.com/Artists-Vagabonds-Narcissistic-Personality-Disorder-ebook/dp/B09XBNJ4W3/ref=tmm_kin_swatch_0"
+             target="_blank" rel="noopener"
+             aria-label="Buy Kindle Edition on Amazon"></a>
           <div class="format-label">
             <span class="name">Kindle Edition</span>
             <span class="status">Available now</span>
           </div>
           <span class="format-arrow" aria-hidden="true">→</span>
         </li>
-        <li class="format-item available" tabindex="0">
+        <li class="format-item available">
+          <a class="format-link"
+             href="https://www.amazon.com/Artists-Vagabonds-Narcissistic-Personality-Disorder/dp/1662468474/ref=monarch_sidesheet"
+             target="_blank" rel="noopener"
+             aria-label="Buy Paperback Edition on Amazon"></a>
           <div class="format-label">
             <span class="name">Paperback</span>
             <span class="status">Available now</span>
@@ -1030,6 +1229,58 @@ footer {
 
 
 <!-- =========================================================
+     CONTACT
+     Visual-only form — to be wired up in WordPress later
+     ========================================================= -->
+<section class="contact" id="contact">
+  <svg class="blob blob-c1 float" aria-hidden="true"><use href="#blobB" fill="#a8c4c2"/></svg>
+
+  <div class="contact-grid">
+    <div class="contact-intro reveal">
+      <span class="eyebrow">Get in Touch</span>
+      <h2>Reach out to the author.</h2>
+      <p>For interviews, speaking engagements, book club discussions, or simply to share your own story — Lorena would love to hear from you.</p>
+
+      <div class="contact-meta">
+        Visit <a href="https://www.lorenasikorski.com" target="_blank" rel="noopener">www.lorenasikorski.com</a> for the latest news and events.
+      </div>
+    </div>
+
+    <form class="contact-form reveal delay-1" id="contactForm" novalidate>
+      <div class="field">
+        <label for="cf-name">Name</label>
+        <input id="cf-name" name="name" type="text" placeholder="Your full name" autocomplete="name" />
+      </div>
+      <div class="field">
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+      </div>
+      <div class="field full">
+        <label for="cf-subject">Subject</label>
+        <input id="cf-subject" name="subject" type="text" placeholder="What's this about?" />
+      </div>
+      <div class="field full">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" placeholder="Share your message…"></textarea>
+      </div>
+
+      <!-- Success message shown after submit (placeholder behaviour) -->
+      <div class="form-success" id="formSuccess">
+        Thank you — your message has been received. (Form will be activated upon site launch.)
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn-submit">
+          Send Message <span class="arrow" aria-hidden="true">→</span>
+        </button>
+        <span class="form-note">We respect your privacy. Your details are never shared.</span>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+<!-- =========================================================
      FOOTER
      ========================================================= -->
 <footer>
@@ -1039,6 +1290,9 @@ footer {
     <a href="https://www.lorenasikorski.com" class="footer-domain" target="_blank" rel="noopener">www.lorenasikorski.com</a>
     <div class="footer-meta">
       ISBN 978-1662468476 · © Lorena L. Sikorski · All rights reserved
+    </div>
+    <div class="footer-credit">
+      Developed by <strong>Artchelo Design</strong>
     </div>
   </div>
 </footer>
@@ -1075,6 +1329,21 @@ footer {
   } else {
     // Fallback: just show everything
     revealEls.forEach(el => el.classList.add('in'));
+  }
+
+  // Contact form — placeholder handler (no backend yet)
+  // Shows a confirmation message and resets the fields. Replace with real
+  // submission logic when migrating to WordPress.
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const success = document.getElementById('formSuccess');
+      success.classList.add('show');
+      form.querySelectorAll('input, textarea').forEach(el => el.value = '');
+      // Scroll the confirmation into view on smaller screens
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
   }
 })();
 </script>
