@@ -309,27 +309,6 @@ section { position: relative; }
 .hero .blob-1 { top:-8%; left:-6%; width: clamp(180px, 26vw, 360px); transform: rotate(-12deg); opacity: 0.55; }
 .hero .blob-4 { bottom:12%; left:4%; width: clamp(50px, 6vw, 90px); opacity: 0.65; }
 
-/* Domain tag in hero */
-.domain-tag {
-  position: absolute;
-  bottom: 2.2rem;
-  right: var(--gutter);
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-faded);
-  text-decoration: none;
-  z-index: 2;
-}
-.domain-tag::before {
-  content: "↗ ";
-  color: var(--orange-deep);
-}
-.domain-tag:hover { color: var(--orange-deep); }
-@media (max-width: 720px) {
-  .domain-tag { position: static; display: inline-block; margin-top: 2.5rem; }
-}
-
 /* =========================================================
    PURCHASE / FORMATS
    ========================================================= */
@@ -737,22 +716,6 @@ section { position: relative; }
   font-size: 1.02rem;
   line-height: 1.75;
 }
-.contact-meta {
-  margin-top: 2rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--rule);
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  color: var(--ink-faded);
-}
-.contact-meta a {
-  color: var(--navy);
-  text-decoration: none;
-  border-bottom: 1px solid var(--orange);
-  padding-bottom: 1px;
-  transition: color .25s var(--ease);
-}
-.contact-meta a:hover { color: var(--orange-deep); }
 
 /* Form */
 .contact-form {
@@ -889,18 +852,6 @@ footer {
   color: var(--teal-soft);
   margin-bottom: 2rem;
 }
-.footer-domain {
-  display: inline-block;
-  font-size: 0.85rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--orange);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-bottom: 0.2rem;
-  transition: border-color .25s var(--ease);
-}
-.footer-domain:hover { border-color: var(--orange); }
 .footer-meta {
   margin-top: 2.5rem;
   font-size: 0.78rem;
@@ -954,7 +905,6 @@ footer {
 .hero h1 .line,
 .hero .hero-sub,
 .hero .hero-author,
-.hero .domain-tag,
 .hero .hero-cover {
   opacity: 0;
   animation: riseIn 1.1s var(--ease) forwards;
@@ -963,7 +913,6 @@ footer {
 .hero h1 .line.l2 { animation-delay: .35s; }
 .hero .hero-sub  { animation-delay: .65s; }
 .hero .hero-author { animation-delay: .85s; }
-.hero .domain-tag  { animation-delay: 1.05s; }
 .hero .hero-cover { animation-delay: .25s; animation-duration: 1.3s; }
 
 @keyframes floatBlob {
@@ -977,7 +926,7 @@ footer {
 /* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity:1; transform:none; }
-  .hero h1 .line, .hero .hero-sub, .hero .hero-author, .hero .domain-tag, .hero .hero-cover { opacity:1; animation: none; }
+  .hero h1 .line, .hero .hero-sub, .hero .hero-author, .hero .hero-cover { opacity:1; animation: none; }
   .blob.float { animation: none; }
   html { scroll-behavior: auto; }
 }
@@ -1067,8 +1016,6 @@ footer {
            loading="eager" />
     </figure>
   </div>
-
-  <a href="https://www.lorenasikorski.com" class="domain-tag" target="_blank" rel="noopener">www.lorenasikorski.com</a>
 </header>
 
 
@@ -1240,10 +1187,6 @@ footer {
       <span class="eyebrow">Get in Touch</span>
       <h2>Reach out to the author.</h2>
       <p>For interviews, speaking engagements, book club discussions, or simply to share your own story — Lorena would love to hear from you.</p>
-
-      <div class="contact-meta">
-        Visit <a href="https://www.lorenasikorski.com" target="_blank" rel="noopener">www.lorenasikorski.com</a> for the latest news and events.
-      </div>
     </div>
 
     <form class="contact-form reveal delay-1" id="contactForm" novalidate>
@@ -1287,7 +1230,6 @@ footer {
   <div class="footer-inner">
     <div class="footer-title">Artists <span style="font-family:var(--f-italic);font-style:italic;color:var(--orange)">&amp;</span> Vagabonds</div>
     <div class="footer-sub">A memoir by Lorena L. Sikorski</div>
-    <a href="https://www.lorenasikorski.com" class="footer-domain" target="_blank" rel="noopener">www.lorenasikorski.com</a>
     <div class="footer-meta">
       ISBN 978-1662468476 · © Lorena L. Sikorski · All rights reserved
     </div>
