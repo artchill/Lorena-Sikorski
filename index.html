@@ -391,12 +391,6 @@ section { position: relative; }
   transition: transform .3s var(--ease);
 }
 .format-item.available:hover .format-arrow { transform: translateX(6px); }
-.format-item.coming-soon {
-  background: transparent;
-  border-style: dashed;
-  opacity: 0.75;
-}
-.format-item.coming-soon .format-arrow { color: var(--ink-faded); }
 /* Stretched link covers the entire card so the whole tile is clickable */
 .format-link {
   position: absolute;
@@ -1051,13 +1045,6 @@ footer {
             <span class="status">Available now</span>
           </div>
           <span class="format-arrow" aria-hidden="true">→</span>
-        </li>
-        <li class="format-item coming-soon">
-          <div class="format-label">
-            <span class="name">Hardback</span>
-            <span class="status">Coming soon</span>
-          </div>
-          <span class="format-arrow" aria-hidden="true">○</span>
         </li>
       </ul>
       <p class="isbn">ISBN <span>978-1662468476</span></p>
